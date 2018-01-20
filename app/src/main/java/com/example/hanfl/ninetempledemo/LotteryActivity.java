@@ -1,11 +1,11 @@
 package com.example.hanfl.ninetempledemo;
 
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,7 +33,7 @@ import java.util.UUID;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class LotteryActivity extends AppCompatActivity {
 
     @BindView(R.id.x_recycler_view)
     RecyclerView xRecyclerView;
@@ -153,16 +153,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static class MainHandler extends Handler {
-        private WeakReference<MainActivity> weakReference;
+        private WeakReference<LotteryActivity> weakReference;
 
-        protected MainHandler(WeakReference<MainActivity> wk) {
+        protected MainHandler(WeakReference<LotteryActivity> wk) {
             weakReference = wk;
         }
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            final MainActivity activity = weakReference.get();
+            final LotteryActivity activity = weakReference.get();
             if (activity == null) {
                 return;
             }
