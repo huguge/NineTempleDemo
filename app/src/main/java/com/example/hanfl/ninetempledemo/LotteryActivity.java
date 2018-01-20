@@ -51,7 +51,7 @@ public class LotteryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_lottery);
         ButterKnife.bind(this);
         xRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         demoAdapter = new DemoAdapter(this, prizeList);
