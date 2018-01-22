@@ -166,35 +166,39 @@ public class LotteryActivity extends AppCompatActivity {
             if (activity == null) {
                 return;
             }
-            if (msg.what == 1) {
-                if (activity.isResult) {
-                    //获取抽奖结果，并关闭该判断，防止重复获取数据
-                    activity.toLoginActivity();
-                    activity.isResult = false;
-                }
-                activity.demoAdapter.notifyDataSetChanged();
-            }
-            if (msg.what == 2) {
-                List<PrizeData> list = (List<PrizeData>) msg.obj;
-                activity.prizeList.clear();
-                for (int i = 0; i < list.size(); i++) {
-                    if (i == 4) {
-                        PrizeData prizeData = new PrizeData();
-                        prizeData.id = UUID.randomUUID().toString();
-                        activity.prizeList.add(prizeData);
+            switch (msg.what) {
+                case 1:
+                    if (activity.isResult) {
+                        //获取抽奖结果，并关闭该判断，防止重复获取数据
+                        activity.toLoginActivity();
+                        activity.isResult = false;
                     }
-                    activity.prizeList.add(list.get(i));
-                }
-            }
-            if (msg.what == 3) {
-                activity.builder.setMessage(activity.prizeList.get(activity.array[activity.result]).name);
-                activity.builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    activity.demoAdapter.notifyDataSetChanged();
+                    break;
+                case 2:
+                    List<PrizeData> list = (List<PrizeData>) msg.obj;
+                    activity.prizeList.clear();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (i == 4) {
+                            PrizeData prizeData = new PrizeData();
+                            prizeData.id = UUID.randomUUID().toString();
+                            activity.prizeList.add(prizeData);
+                        }
+                        activity.prizeList.add(list.get(i));
+                    }
+                    break;
+                case 3:
+                    activity.builder.setMessage(activity.prizeList.get(activity.array[activity.result]).name);
+                    activity.builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                activity.builder.show();
+                        }
+                    });
+                    activity.builder.show();
+                    break;
+                default:
+                    break;
             }
         }
     }
