@@ -17,6 +17,8 @@
         </activity>
         <!-- 抽奖 -->
         <activity android:name=".LotteryActivity"/>
+        <!-- 签到 -->
+        <activity android:name=".SignCalenderActivity"/>
     </application>
 
 </manifest>
